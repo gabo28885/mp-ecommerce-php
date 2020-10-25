@@ -1,3 +1,68 @@
+<?php include_once 'vendor/autoload.php'; 
+
+        // Crea un objeto de preferencia
+        MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
+        $preference = new MercadoPago\Preference();
+        
+        //Preferencias de pago
+        $preference->payment_methods = array(
+            "excluded_payment_methods" => array(
+              array("id" => "amex")
+            ),
+            "excluded_payment_types" => array(
+              array("id" => "atm")
+            ),
+            "installments" => 6
+        );
+        //Fin de preferencias de pago
+        
+        //Datos del pagador
+        $payer = new MercadoPago\Payer();
+        $payer->name = "Lalo";
+        $payer->surname = "Landa";
+        $payer->email = "test_user_63274575@testuser.com";
+        $payer->date_created = "2018-06-02T12:58:41.425-04:00";
+        $payer->phone = array(
+          "area_code" => "11",
+          "number" => "22223333"
+        );
+
+        $payer->address = array(
+          "street_name" => "Falsa",
+          "street_number" => 123,
+          "zip_code" => "1111"
+        );
+        
+        $preference->payer = $payer;
+        // fin datos del pagador
+        
+        
+        // Crea un ítem en la preferencia
+        $item = new MercadoPago\Item();
+        $item->id = "1234";
+        $item->picture_url = $_POST['img'];
+        $item->title = $_POST["title"];
+        $item->description = "Dispositivo móvil de Tienda e-commerce”";
+        $item->quantity = 1;
+        $item->unit_price = $_POST['price'];
+        $preference->items = array($item);
+        
+        $preference->external_reference = "gabo28885@gmail.com";  
+
+        $url = 'form_mostrar_resultado.php';
+        $path = $_SERVER['HTTP_HOST'] . "/mp-ecommerce-php/assets/";    
+        $preference->back_urls = array(
+            "success" => $path . "pago_ok.php",
+            "failure" => $path . "pago_rechazado.php",
+            "pending" => $path . "pago_pendiente.php"
+        );
+       
+        $preference->auto_return = "approved";
+        
+        
+        $preference->save();
+?>
+
 <!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
@@ -107,9 +172,6 @@
 
                                             
                                         </div>
-
-                                        
-
                                     </div>
 
                                 </div>
@@ -130,7 +192,9 @@
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>
+                                    <a class="mercadopago-button" style="padding-bottom: 10px; padding-top: 10px;"href="<?php echo $preference->init_point; ?>">
+                                        Pagar la compra
+                                    </a>
                                 </div>
                             </div>
                         </div>
