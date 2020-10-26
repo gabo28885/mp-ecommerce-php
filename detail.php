@@ -2,6 +2,7 @@
 
         // Crea un objeto de preferencia
         MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
+        MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
         $preference = new MercadoPago\Preference();
         
         //Preferencias de pago
@@ -56,6 +57,9 @@
             "failure" => $path . "pago_rechazado.php",
             "pending" => $path . "pago_pendiente.php"
         );
+        
+        //Direccion de notificaciones 
+        $preference->notification_url = $path . "procesar_pago.php";
        
         $preference->auto_return = "approved";
         
@@ -76,7 +80,7 @@
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
-
+    <script src="https://www.mercadopago.com/v2/security.js" view="item"></script>
     <link rel="stylesheet" href="./assets/category-landing.css" media="screen, print">
 
     <link rel="stylesheet" href="./assets/category.css" media="screen, print">

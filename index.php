@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
     <meta name="viewport" content="width=1024">
     <title>Tienda e-commerce</title>
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
     
@@ -11,13 +9,10 @@
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
-
+    <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
     <link rel="stylesheet" href="./assets/category-landing.css" media="screen, print">
-
     <link rel="stylesheet" href="./assets/category.css" media="screen, print">
-
     <link rel="stylesheet" href="./assets/merch-tools.css" media="screen, print">
-
     <link rel="stylesheet" href="./assets/fonts" media="">
     <style>
         .as-filter-button-text {
